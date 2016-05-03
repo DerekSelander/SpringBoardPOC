@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>SpringBoardPOC.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>SpringBoardTweak.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A606E7C61CD6E79E00C8389E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A606E7E01CD6E7B700C8389E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A606E7F21CD7E77F00C8389E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A606E8061CD7EA9E00C8389E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

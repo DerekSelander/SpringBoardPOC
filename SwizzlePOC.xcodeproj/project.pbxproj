@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A606E7CB1CD6E79E00C8389E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606E7CA1CD6E79E00C8389E /* AppDelegate.swift */; };
+		A606E7CD1CD6E79E00C8389E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606E7CC1CD6E79E00C8389E /* ViewController.swift */; };
+		A606E7D01CD6E79E00C8389E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A606E7CE1CD6E79E00C8389E /* Main.storyboard */; };
+		A606E7D21CD6E79E00C8389E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A606E7D11CD6E79E00C8389E /* Assets.xcassets */; };
+		A606E7D51CD6E79E00C8389E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A606E7D31CD6E79E00C8389E /* LaunchScreen.storyboard */; };
+		A606E80A1CD7EA9E00C8389E /* SpringBoardTweak.h in Headers */ = {isa = PBXBuildFile; fileRef = A606E8091CD7EA9E00C8389E /* SpringBoardTweak.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A606E80E1CD7EA9E00C8389E /* SpringBoardTweak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A606E8071CD7EA9E00C8389E /* SpringBoardTweak.framework */; };
+		A606E80F1CD7EA9E00C8389E /* SpringBoardTweak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A606E8071CD7EA9E00C8389E /* SpringBoardTweak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A606E8181CD7EADB00C8389E /* Tweak.m in Sources */ = {isa = PBXBuildFile; fileRef = A606E8161CD7EADB00C8389E /* Tweak.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A606E80C1CD7EA9E00C8389E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A606E7BF1CD6E79E00C8389E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A606E8061CD7EA9E00C8389E;
+			remoteInfo = SpringBoardTweak;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A606E7ED1CD6E7B700C8389E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A606E80F1CD7EA9E00C8389E /* SpringBoardTweak.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A606E7C71CD6E79E00C8389E /* SwizzlePOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwizzlePOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A606E7CA1CD6E79E00C8389E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A606E7CC1CD6E79E00C8389E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A606E7CF1CD6E79E00C8389E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A606E7D11CD6E79E00C8389E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A606E7D41CD6E79E00C8389E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A606E7D61CD6E79E00C8389E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A606E8071CD7EA9E00C8389E /* SpringBoardTweak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpringBoardTweak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A606E8091CD7EA9E00C8389E /* SpringBoardTweak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpringBoardTweak.h; sourceTree = "<group>"; };
+		A606E80B1CD7EA9E00C8389E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A606E8161CD7EADB00C8389E /* Tweak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweak.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A606E7C41CD6E79E00C8389E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A606E80E1CD7EA9E00C8389E /* SpringBoardTweak.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A606E8031CD7EA9E00C8389E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A606E7BE1CD6E79E00C8389E = {
+			isa = PBXGroup;
+			children = (
+				A606E7C91CD6E79E00C8389E /* SpringBoardPOC */,
+				A606E8081CD7EA9E00C8389E /* SpringBoardTweak */,
+				A606E7C81CD6E79E00C8389E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A606E7C81CD6E79E00C8389E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A606E7C71CD6E79E00C8389E /* SwizzlePOC.app */,
+				A606E8071CD7EA9E00C8389E /* SpringBoardTweak.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A606E7C91CD6E79E00C8389E /* SpringBoardPOC */ = {
+			isa = PBXGroup;
+			children = (
+				A606E7CA1CD6E79E00C8389E /* AppDelegate.swift */,
+				A606E7CC1CD6E79E00C8389E /* ViewController.swift */,
+				A606E7CE1CD6E79E00C8389E /* Main.storyboard */,
+				A606E7D11CD6E79E00C8389E /* Assets.xcassets */,
+				A606E7D31CD6E79E00C8389E /* LaunchScreen.storyboard */,
+				A606E7D61CD6E79E00C8389E /* Info.plist */,
+			);
+			path = SpringBoardPOC;
+			sourceTree = "<group>";
+		};
+		A606E8081CD7EA9E00C8389E /* SpringBoardTweak */ = {
+			isa = PBXGroup;
+			children = (
+				A606E8091CD7EA9E00C8389E /* SpringBoardTweak.h */,
+				A606E8161CD7EADB00C8389E /* Tweak.m */,
+				A606E80B1CD7EA9E00C8389E /* Info.plist */,
+			);
+			path = SpringBoardTweak;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A606E8041CD7EA9E00C8389E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A606E80A1CD7EA9E00C8389E /* SpringBoardTweak.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A606E7C61CD6E79E00C8389E /* SwizzlePOC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A606E7D91CD6E79E00C8389E /* Build configuration list for PBXNativeTarget "SwizzlePOC" */;
+			buildPhases = (
+				A606E7C31CD6E79E00C8389E /* Sources */,
+				A606E7C41CD6E79E00C8389E /* Frameworks */,
+				A606E7C51CD6E79E00C8389E /* Resources */,
+				A606E7ED1CD6E7B700C8389E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A606E80D1CD7EA9E00C8389E /* PBXTargetDependency */,
+			);
+			name = SwizzlePOC;
+			productName = SpringBoardPOC;
+			productReference = A606E7C71CD6E79E00C8389E /* SwizzlePOC.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A606E8061CD7EA9E00C8389E /* SpringBoardTweak */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A606E8101CD7EA9E00C8389E /* Build configuration list for PBXNativeTarget "SpringBoardTweak" */;
+			buildPhases = (
+				A606E8021CD7EA9E00C8389E /* Sources */,
+				A606E8031CD7EA9E00C8389E /* Frameworks */,
+				A606E8041CD7EA9E00C8389E /* Headers */,
+				A606E8051CD7EA9E00C8389E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpringBoardTweak;
+			productName = SpringBoardTweak;
+			productReference = A606E8071CD7EA9E00C8389E /* SpringBoardTweak.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A606E7BF1CD6E79E00C8389E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Selander;
+				TargetAttributes = {
+					A606E7C61CD6E79E00C8389E = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					A606E8061CD7EA9E00C8389E = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = A606E7C21CD6E79E00C8389E /* Build configuration list for PBXProject "SwizzlePOC" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A606E7BE1CD6E79E00C8389E;
+			productRefGroup = A606E7C81CD6E79E00C8389E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A606E7C61CD6E79E00C8389E /* SwizzlePOC */,
+				A606E8061CD7EA9E00C8389E /* SpringBoardTweak */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A606E7C51CD6E79E00C8389E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A606E7D51CD6E79E00C8389E /* LaunchScreen.storyboard in Resources */,
+				A606E7D21CD6E79E00C8389E /* Assets.xcassets in Resources */,
+				A606E7D01CD6E79E00C8389E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A606E8051CD7EA9E00C8389E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A606E7C31CD6E79E00C8389E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A606E7CD1CD6E79E00C8389E /* ViewController.swift in Sources */,
+				A606E7CB1CD6E79E00C8389E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A606E8021CD7EA9E00C8389E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A606E8181CD7EADB00C8389E /* Tweak.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A606E80D1CD7EA9E00C8389E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A606E8061CD7EA9E00C8389E /* SpringBoardTweak */;
+			targetProxy = A606E80C1CD7EA9E00C8389E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A606E7CE1CD6E79E00C8389E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A606E7CF1CD6E79E00C8389E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A606E7D31CD6E79E00C8389E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A606E7D41CD6E79E00C8389E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A606E7D71CD6E79E00C8389E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A606E7D81CD6E79E00C8389E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A606E7DA1CD6E79E00C8389E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = SpringBoardPOC/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.selander.SpringBoardPOC;
+				PRODUCT_NAME = SwizzlePOC;
+			};
+			name = Debug;
+		};
+		A606E7DB1CD6E79E00C8389E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = SpringBoardPOC/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.selander.SpringBoardPOC;
+				PRODUCT_NAME = SwizzlePOC;
+			};
+			name = Release;
+		};
+		A606E8111CD7EA9E00C8389E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SpringBoardTweak/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.selander.SpringBoardTweak;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A606E8121CD7EA9E00C8389E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SpringBoardTweak/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.selander.SpringBoardTweak;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A606E7C21CD6E79E00C8389E /* Build configuration list for PBXProject "SwizzlePOC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A606E7D71CD6E79E00C8389E /* Debug */,
+				A606E7D81CD6E79E00C8389E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A606E7D91CD6E79E00C8389E /* Build configuration list for PBXNativeTarget "SwizzlePOC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A606E7DA1CD6E79E00C8389E /* Debug */,
+				A606E7DB1CD6E79E00C8389E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A606E8101CD7EA9E00C8389E /* Build configuration list for PBXNativeTarget "SpringBoardTweak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A606E8111CD7EA9E00C8389E /* Debug */,
+				A606E8121CD7EA9E00C8389E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A606E7BF1CD6E79E00C8389E /* Project object */;
+}
