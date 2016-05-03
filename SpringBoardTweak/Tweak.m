@@ -15,7 +15,7 @@
 #pragma clang diagnostic ignored "-Wundeclared-selector"
 
 
-//#warning Uncomment load method to swizzle scrollViewDidScroll:
+#warning Uncomment load method to swizzle scrollViewDidScroll:
 
 //+ (void)load
 //{
