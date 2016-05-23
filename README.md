@@ -1,3 +1,16 @@
+#### Important! Added a dump_methods.py script. Will spend a bit of time talking about custom LLDB scripts for finding stuff.
+
+1. Grab latest. 
+2. Put `dump_methods.py` in a known location. i.e. `~/lldb/`
+3. Add the following to your `~/.lldbinit` file 
+  ```lldb
+  command script import PATH/TO/dump_methods.py
+  
+  # i.e. command script import ~/lldb/dump_methods.py
+  ```
+4. Celebrate! 
+
+
 ## Lab Material for [Silicon Valley iOS Developers' Meetup](http://www.meetup.com/sviphone/)
 
 Part of my talk will include a lab where you will find and swizzle code from a stripped binary. Feel free to download this content and follow along during the talk. :] 
