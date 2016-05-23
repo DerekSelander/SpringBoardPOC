@@ -14,9 +14,6 @@ import lldb
 import re
 from random import randint
 
-# Put _this_ file into ~/lldb/thread_return.py
-# Put the following line into ~/.lldbinit
-#     command script import ~/lldb/thread_return.py
 
 def __lldb_init_module(debugger, internal_dict):
     debugger.HandleCommand('command script add -f dump_methods.dump_methods dump_methods')
