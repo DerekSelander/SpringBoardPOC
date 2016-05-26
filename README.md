@@ -25,9 +25,9 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
 
 1. Attach LLDB to SpringBoard. Alternatively, use Xcode. From the top menu, select `Debug`, then `Attach to process`, then type in `SpringBoard`. 
 
-![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Attach.gif)
+  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Attach.gif)
 
-Or if you want to use Terminal... 
+  Or if you want to use Terminal... 
 
   ```lldb 
   lldb -n SpringBoard
@@ -42,35 +42,29 @@ Or if you want to use Terminal...
 
 ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Find.gif)
 
-3. Search for all instances of UIScrollView in the heap, print out object description
-
-  ```lldb 
-  (lldb) objc_refs UIScrollView -o
-  ```
-
-4. Look for SBIconScrollView and the corresponding reference address (cmd + f could help). Note that your address will be different  
+3. Look for SBIconScrollView and the corresponding reference address (cmd + f could help). Note that your address will be different  
 
   ```lldb 
   (lldb) po 0xdeadbeef
   ```
 
-5. Ensure that this is the correct UIScrollView. Augment the view in some way. 
+4. Ensure that this is the correct UIScrollView. Augment the view in some way. 
 
   ```lldb 
   (lldb) po [0xdeadbeef setHidden: YES]
   (lldb) continue 
   ```
 
-6. Looks like this is the correct reference you want to modify. Pause the program & undo your visual changes 
+  ... Looks like this is the correct reference you want to modify. Pause the program & undo your visual changes 
 
   ```lldb 
   (lldb) proc int
   (lldb) po [0xdeadbeef setHidden: NO]
   ```
 
-![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView.gif)
+  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView.gif)
 
-7. UIScrollViews can have a UIScrollViewDelegate. Find out what class this is
+6. UIScrollViews can have a UIScrollViewDelegate. Find out what class this is
 
   ```lldb 
   (lldb) po [0xdeadbeef delegate] 
@@ -79,13 +73,13 @@ Or if you want to use Terminal...
 
 ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView_Delegate.gif)
 
-8. It is this class (or subsequent parent class) that could implement UIScrollViewDelegate methods. Time to use `class-dump` on the executable itself. First you need to find where SpringBoard is located on your system. 
+7. It is this class (or subsequent parent class) that could implement UIScrollViewDelegate methods. Time to use `class-dump` on the executable itself. First you need to find where SpringBoard is located on your system. 
 
   ```lldb 
   ps aux | grep SpringBoard 
   ```
 
-9. With the output apply class-dump to the SpringBoard executable 
+8. With the output apply class-dump to the SpringBoard executable 
 
   ```lldb 
   class-dump PATH/TO/SpringBoard 
