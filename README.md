@@ -40,7 +40,7 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
   (lldb) objc_refs SBIconScrollView -o
   ```
 
-![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Find.gif)
+  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Find.gif)
 
 3. Look for SBIconScrollView and the corresponding reference address (cmd + f could help). Note that your address will be different  
 
@@ -48,7 +48,7 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
   (lldb) po 0xdeadbeef
   ```
 
-4. Ensure that this is the correct UIScrollView. Augment the view in some way. 
+4. Ensure that this is the correct UIScrollView subclass. Augment the view in some way. 
 
   ```lldb 
   (lldb) po [0xdeadbeef setHidden: YES]
@@ -64,14 +64,14 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
 
   ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView.gif)
 
-6. UIScrollViews can have a UIScrollViewDelegate. Find out what class this is
+6. UIScrollViews can have a `delegate` object conforming to `UIScrollViewDelegate`. Find out if this class exists and if it does, what class this is...
 
   ```lldb 
   (lldb) po [0xdeadbeef delegate] 
   (lldb) po [[0xdeadbeef delegate] superclass]
   ```
 
-![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView_Delegate.gif)
+  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView_Delegate.gif)
 
 7. It is this class (or subsequent parent class) that could implement UIScrollViewDelegate methods. Time to use `class-dump` on the executable itself. First you need to find where SpringBoard is located on your system. 
 
@@ -82,8 +82,21 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
 8. With the output apply class-dump to the SpringBoard executable 
 
   ```lldb 
-  class-dump PATH/TO/SpringBoard 
+  class-dump PATH/TO/SpringBoard -f scrollViewDidScroll
   ```
 
-Using the class that you printed out from the UIScrollView delgate, search for a class (or superclass) that implements `scrollViewDidScroll:`
+  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/Terminal.gif)
+  Using the class that you printed out from the UIScrollView delgate, search for a class (or superclass) that implements `scrollViewDidScroll:`
+
+  As you can see, `SBFolderView` (and by inheritance, all of it's subclasses) implement `scrollViewDidScroll:`
+
+9. Head back to the LLDB console. Type the following, but *DO NOT PRESS ENTER YET*
+  ```lldb
+  (lldb) process load 
+  ```
+
+10. Provided that you've already compiled the SpringBoardPOC app. Open the products directory, right click on `SpringBoardTweak.framework` and select `Show in Finder`. Expand the SpringBoardTweak.framework and drag and drop the `SpringBoardTweak` executable into the LLDB console. Now press enter. Resume the program
+ 
+  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Load_DYLD.gif)
+
 
