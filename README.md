@@ -1,7 +1,7 @@
 # Lab Material for [Silicon Valley iOS Developers Meetup](http://www.meetup.com/sviphone/),<br/> [iOS Security and Hacking](http://www.meetup.com/sviphone/events/230950259/)
 
 ## Slides
-**Note:** All examples are using SpringBoard w/ iOS 9.3. You lldb_unnamed_function results will differ if using a different version.
+**Note:** All examples are using SpringBoard w/ iOS 9.3. Your `lldb_unnamed_function` results will differ if using a different version.
 
 * Tip #1: Explore Code without the Source Code
   * Use registers
