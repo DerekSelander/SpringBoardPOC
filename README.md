@@ -1,5 +1,57 @@
 ## Lab Material for [Silicon Valley iOS Developers Meetup](http://www.meetup.com/sviphone/), [iOS Security and Hacking](http://www.meetup.com/sviphone/events/230950259/)
 
+### Slides
+
+1 Tip #1: Explore Code without the Source Code
+  * Use registers
+  * In 64-bit, objc_msgSend<br/>
+    **RDI** is the instance of the class or class itself<br/>
+    **RSI** is the selector<br/>
+    **RDX** is the first param (if method has param/s)<br/>
+    **RCX**, **R8**, **R9**, then stack if more params needed<br/>
+
+  * In 32-bit  
+    ```lldb
+    (lldb) po *(id *)($esp + 4)     # $rdi equivalent 
+    (lldb) po *(SEL *)($esp + 8)    # $rsi equivalent
+    (lldb) # ecetera ... 
+    ```
+  For example, try attaching LLDB to the SpringBoard app, setting a breakpoint on every method in the SpringBoard executable, and then print the method. 
+  ```lldb
+  
+  lldb -n SpringBoard
+  (lldb) rb . -s SpringBoard        # Make sure to use the -s SpringBoard or else, it will create a function on EVERYTHING...
+  Breakpoint 1: 31123 locations.
+  (lldb) c
+    Process 47674 resuming
+    Process 47674 stopped
+    * thread #1: tid = 0xe757cd, 0x0000000108daef79 SpringBoard`___lldb_unnamed_function25892$$SpringBoard, queue = 'com.apple.main-thread', stop reason = breakpoint 1.25892
+    frame #0: 0x0000000108daef79 SpringBoard`___lldb_unnamed_function25892$$SpringBoard
+    SpringBoard`___lldb_unnamed_function25892$$SpringBoard:
+    ->  0x108daef79 <+0>: pushq  %rbp
+    0x108daef7a <+1>: movq   %rsp, %rbp
+    0x108daef7d <+4>: pushq  %r15
+    0x108daef7f <+6>: pushq  %r14
+    
+  (lldb) po $rdi 
+  <SBStatusBarStateAggregator: 0x7f9dda033e00>
+
+  (lldb) po (SEL)$rsi
+  "_restartTimeItemTimer"
+  ```
+  
+  As you can see, `___lldb_unnamed_function25892$$SpringBoard` is LLDBs representation of `-[SBStatusBarStateAggregator_restartTimeItemTimer]` because the binary is stripped (no DEBUG info included)
+2. Tip #2: Find Instances of Classes
+  * Use LLDB's heap script that comes included with every version of Xcode. In LLDB... 
+  ```lldb
+  (lldb) command script import lldb.macosx.heap
+  (lldb) objc_refs -o UIViewController
+  ``` 
+  
+  This will dump all instances of `UIViewController`s found in the heap. Also check out `ptr_refs` & `malloc_info` from the same heap script. 
+3. Tip #3: Breakpoint Conditions
+  * Break only when a particular case is true. Useful for hunting down a unique case for a frequently called method. 
+
 ### Setup 
 
 If you don't already have [class-dump, please download it](https://github.com/nygard/class-dump) and install in `/usr/local/bin` or similar location. 
@@ -107,11 +159,9 @@ If this stuff interests you there are several paths you can take.
 
 If you want to learn more, I would suggest following along on this tutorial. Although it's a bit dated, you'll learn some good debugging tricks in this series. 
 
-https://www.raywenderlich.com/94020/creating-an-xcode-plugin-part-1
-
-https://www.raywenderlich.com/97756/creating-an-xcode-plugin-part-2
-
-https://www.raywenderlich.com/104479/creating-an-xcode-plugin-part-3
+https://www.raywenderlich.com/94020/creating-an-xcode-plugin-part-1  
+https://www.raywenderlich.com/97756/creating-an-xcode-plugin-part-2  
+https://www.raywenderlich.com/104479/creating-an-xcode-plugin-part-3  
 
 An EXCELLENT book on the process of creating jailbreak tweaks check out:  
 
