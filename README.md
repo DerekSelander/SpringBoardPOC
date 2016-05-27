@@ -1,8 +1,8 @@
-## Lab Material for [Silicon Valley iOS Developers Meetup](http://www.meetup.com/sviphone/), [iOS Security and Hacking](http://www.meetup.com/sviphone/events/230950259/)
+## Lab Material for [Silicon Valley iOS Developers Meetup](http://www.meetup.com/sviphone/),<br/> [iOS Security and Hacking](http://www.meetup.com/sviphone/events/230950259/)
 
 ### Slides
 
-1 Tip #1: Explore Code without the Source Code
+* Tip #1: Explore Code without the Source Code
   * Use registers
   * In 64-bit, objc_msgSend<br/>
     **RDI** is the instance of the class or class itself<br/>
@@ -20,7 +20,7 @@
   ```lldb
   
   lldb -n SpringBoard
-  (lldb) rb . -s SpringBoard        # Make sure to use the -s SpringBoard or else, it will create a function on EVERYTHING...
+  (lldb) rb . -s SpringBoard        # Make sure to use the -s SpringBoard or else, it will create a breakpoint on EVERYTHING...
   Breakpoint 1: 31123 locations.
   (lldb) c
     Process 47674 resuming
@@ -41,7 +41,8 @@
   ```
   
   As you can see, `___lldb_unnamed_function25892$$SpringBoard` is LLDBs representation of `-[SBStatusBarStateAggregator_restartTimeItemTimer]` because the binary is stripped (no DEBUG info included)
-2. Tip #2: Find Instances of Classes
+  
+* Tip #2: Find Instances of Classes
   * Use LLDB's heap script that comes included with every version of Xcode. In LLDB... 
   ```lldb
   (lldb) command script import lldb.macosx.heap
@@ -49,8 +50,25 @@
   ``` 
   
   This will dump all instances of `UIViewController`s found in the heap. Also check out `ptr_refs` & `malloc_info` from the same heap script. 
-3. Tip #3: Breakpoint Conditions
+* Tip #3: Breakpoint Conditions
   * Break only when a particular case is true. Useful for hunting down a unique case for a frequently called method. 
+    For example, say if you wanted to break when a specific UILabel's text is being set. In SpringBoard, when pressing the Do Not Distrub button, text appears saying "Do Not Distrub: On"
+
+   image 
+   
+   In LLDB, you can break exactly when this is set. 
+   ```lldb 
+   lldb -n SpringBoard
+   (lldb) rb UILabel.setText: -c '(BOOL)[$rdx containsString:@"Do Not Disturb: On"]'
+   ``` 
+   
+   Now, tap on the Do Not Distrub Button. Breakpoint hit :] 
+   
+* Tip #4: Complex Assembly
+ * Create a breakpoint then call the function in which you want to examine. Dump registers while stepping through asm.
+   For example, in SpringBoard
+
+  
 
 ### Setup 
 
