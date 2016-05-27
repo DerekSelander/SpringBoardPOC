@@ -10,19 +10,18 @@
     **RDX** is the first param (if method has param/s)<br/>
     **RCX**, **R8**, **R9**, then stack if more params needed<br/>
 
-  * In 32-bit  
+  * In 32-bit a different calling convention is used. Use stack pointer offsets. 32-bit devices are iPhone 4s, iPad 2, iPhone 5c, etc.
     ```lldb
     (lldb) po *(id *)($esp + 4)     # $rdi equivalent 
     (lldb) po *(SEL *)($esp + 8)    # $rsi equivalent
     (lldb) # ecetera ... 
     ```
-  For example, try attaching LLDB to the SpringBoard app, setting a breakpoint on every method in the SpringBoard executable, and then print the method. 
-  ```lldb
-  
-  lldb -n SpringBoard
-  (lldb) rb . -s SpringBoard        # Make sure to use the -s SpringBoard or else, it will create a breakpoint on EVERYTHING...
-  Breakpoint 1: 31123 locations.
-  (lldb) c
+   For example, try attaching LLDB to the SpringBoard app, setting a breakpoint on every method in the SpringBoard executable, and then print the method. 
+   ```lldb
+   lldb -n SpringBoard
+   (lldb) rb . -s SpringBoard        # Make sure to use the -s SpringBoard or else, it will create a breakpoint on EVERYTHING...
+   Breakpoint 1: 31123 locations.
+   (lldb) c
     Process 47674 resuming
     Process 47674 stopped
     * thread #1: tid = 0xe757cd, 0x0000000108daef79 SpringBoard`___lldb_unnamed_function25892$$SpringBoard, queue = 'com.apple.main-thread', stop reason = breakpoint 1.25892
@@ -33,12 +32,12 @@
     0x108daef7d <+4>: pushq  %r15
     0x108daef7f <+6>: pushq  %r14
     
-  (lldb) po $rdi 
-  <SBStatusBarStateAggregator: 0x7f9dda033e00>
+   (lldb) po $rdi 
+   <SBStatusBarStateAggregator: 0x7f9dda033e00>
 
-  (lldb) po (SEL)$rsi
-  "_restartTimeItemTimer"
-  ```
+   (lldb) po (SEL)$rsi
+   "_restartTimeItemTimer"
+   ```
   
   As you can see, `___lldb_unnamed_function25892$$SpringBoard` is LLDBs representation of `-[SBStatusBarStateAggregator_restartTimeItemTimer]` because the binary is stripped (no DEBUG info included)
   
@@ -49,7 +48,7 @@
   (lldb) objc_refs -o UIViewController
   ``` 
   
-  This will dump all instances of `UIViewController`s found in the heap. Also check out `ptr_refs` & `malloc_info` from the same heap script. 
+  This will dump all instances of `UIViewController`s found in the heap. Also check out and play with `ptr_refs` & `malloc_info` from the same heap script. 
 * Tip #3: Breakpoint Conditions
   * Break only when a particular case is true. Useful for hunting down a unique case for a frequently called method. 
     For example, say if you wanted to break when a specific UILabel's text is being set. In SpringBoard, when pressing the Do Not Distrub button, text appears saying "Do Not Distrub: On"
@@ -59,15 +58,15 @@
    In LLDB, you can break exactly when this is set. 
    ```lldb 
    lldb -n SpringBoard
-   (lldb) rb UILabel.setText: -c '(BOOL)[$rdx containsString:@"Do Not Disturb: On"]'
+   (lldb) rb UILabel.setText: -c '(BOOL)[$rdx containsString:@"Do Not Disturb: On"]' # Remember, 64-bit for this to work
    ``` 
    
    Now, tap on the Do Not Distrub Button. Breakpoint hit :] 
    
 * Tip #4: Complex Assembly
- * Sometimes the assembly is to hard to read by itself. You will need to execute the code while stepping in the assembly to figure out what is happening 
+ * Sometimes the assembly is to hard to read by itself. As a workaround, you can execute the code while stepping in the assembly to figure out what is happening 
  * Create a breakpoint then call the function in which you want to examine. Dump registers while stepping through asm.
-   For example, in iOS 9.3 Simulator 6s Plus, SpringBoard has the following method: `[[SBPasscodeController sharedInstance] forceUserToChangePasscode]` found at `___lldb_unnamed_function7503$$SpringBoard`
+   For example, in iOS 9.3 Simulator 6s Plus, SpringBoard has the following method: `[[SBPasscodeController sharedInstance] forceUserToChangePasscode]` found at `___lldb_unnamed_function7503$$SpringBoard`  
 
  ```lldb
  lldb -n SpringBoard
@@ -87,6 +86,18 @@
  >>> path = target.executable.fullpath
  >>> print path 
  ```
+ You can of course make scripts to do these tasks so you don't have to enter in these commands every time. 
+ Here is an example of `dump_methods.py` used on a class in SpringBoard. 
+ 
+ ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/dump_methods.png)
+ 
+ `dump_methods.py` is included in this repo. 
+ 
+ 
+ 
+ Here's a different (private) command called `stripped regex lookup` that I have been working on that does a regex on the input and finds the physical address as well as the `___lldb_unnamed_function` equivalent for the query on a stripped binary. :]
+ 
+ ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/srl.png)
  
 ### Setup 
 
