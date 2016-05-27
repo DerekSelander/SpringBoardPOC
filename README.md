@@ -1,21 +1,13 @@
-#### Important! Added a dump_methods.py script. Will spend a bit of time talking about custom LLDB scripts for finding stuff.
-
-1. Grab latest. 
-2. Put `dump_methods.py` in a known location. i.e. `~/lldb/`
-3. Add the following to your `~/.lldbinit` file 
-  ```lldb
-  command script import PATH/TO/dump_methods.py
-  
-  # i.e. command script import ~/lldb/dump_methods.py
-  ```
-4. Celebrate! 
-
-![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Load_DYLD.gif)
-
-
 ## Lab Material for [Silicon Valley iOS Developers Meetup](http://www.meetup.com/sviphone/), [iOS Security and Hacking](http://www.meetup.com/sviphone/events/230950259/)
 
 If you don't already have [class-dump, please download it](https://github.com/nygard/class-dump) and install in `/usr/local/bin` or similar location. 
+
+Download this sample project and follow along below. 
+
+##### Compiling the Code
+
+After downloading the sample code, build and run the app. It is an application which has a UIScrollView which showcases several views... not too exciting. The majority of work is done in Interface Builder. Take a look at `ViewController.swift`: The UIScrollView's delegate is assigned to this class, which implements only one method from UIScrollViewDelegate, `scrollViewDidScroll:` 
+
 
 ##### Finding Where to Swizzle
 
@@ -98,5 +90,40 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
 10. Provided that you've already compiled the SpringBoardPOC app. Open the products directory, right click on `SpringBoardTweak.framework` and select `Show in Finder`. Expand the SpringBoardTweak.framework and drag and drop the `SpringBoardTweak` executable into the LLDB console. Now press enter. Resume the program
  
   ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Load_DYLD.gif)
+
+
+## Where to Go From Here
+
+If this stuff interests you there are several paths you can take. 
+
+One path is to try figuring out how some features in an application work. If that interests you, here are some challenges: 
+
+* The Photos application in the Simulator has a very cool effect when scrolling through the photos (only found in iOS 9 and later). When you scroll, part of the photo gets cut off, giving it a cool 3-Dimensional affect. Try and figure out how they accomplish this. 
+
+  ```lldb
+  lldb -n MobileSlidehow
+  ```
+  
+* What API endpoints is the Maps application hitting? What params are they using? Try and get as much information out of it as possible. Are you able to hit these endpoints yourself with Terminal's `curl`? 
+
+  ```lldb
+  lldb -n Maps
+  ```
+
+
+
+#### Important! Added a dump_methods.py script. Will spend a bit of time talking about custom LLDB scripts for finding stuff.
+
+1. Grab latest. 
+2. Put `dump_methods.py` in a known location. i.e. `~/lldb/`
+3. Add the following to your `~/.lldbinit` file 
+  ```lldb
+  command script import PATH/TO/dump_methods.py
+  
+  # i.e. command script import ~/lldb/dump_methods.py
+  ```
+4. Celebrate! 
+
+![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Load_DYLD.gif)
 
 
