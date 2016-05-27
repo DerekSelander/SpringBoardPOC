@@ -265,7 +265,7 @@ One path is to try figuring out how some features in an application work. If tha
 
 #### *Note: I have not tried any of these challenges, so I do not know the difficulty of completing them. I'll be open to solving them myself and giving hints if I see an honest attempt is being made* 
 
-Have fun! ping me on Twitter for questions ![LOLGrep](https://twitter.com/lolgrep)
+Have fun! ping me on Twitter for questions [@LOLGrep](https://twitter.com/lolgrep)
 
 
 
