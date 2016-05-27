@@ -1,15 +1,24 @@
 ## Lab Material for [Silicon Valley iOS Developers Meetup](http://www.meetup.com/sviphone/), [iOS Security and Hacking](http://www.meetup.com/sviphone/events/230950259/)
 
+### Setup 
+
 If you don't already have [class-dump, please download it](https://github.com/nygard/class-dump) and install in `/usr/local/bin` or similar location. 
 
 Download this sample project and follow along below. 
 
-##### Compiling the Code
+### Compiling the Code
 
-After downloading the sample code, build and run the app. It is an application which has a UIScrollView which showcases several views... not too exciting. The majority of work is done in Interface Builder. Take a look at `ViewController.swift`: The UIScrollView's delegate is assigned to this class, which implements only one method from UIScrollViewDelegate, `scrollViewDidScroll:` 
+After downloading the sample code, build and run the app. It is an application which has a UIScrollView which showcases several views... not too exciting. Try scrolling back and forth in the simulator to make sure this works.
+
+The majority of work is done in Interface Builder. Take a look at `ViewController.swift`: The UIScrollView's delegate is assigned to `ViewController.swift`, which implements only one method from UIScrollViewDelegate, `scrollViewDidScroll:` 
+
+An important note is that SpringBoardPOC has one required framework, `SpringBoardTweak`. The one class in this framework is called `Tweak.m`. Open up `Tweak.m` and explore it's contents. 
+
+You'll see a commented out method for `+ (void)load`. Uncomment this method then recompile the app. Try moving the UIScrollView around and see what happens. 
 
 
-##### Finding Where to Swizzle
+
+### Finding Where to Swizzle
 
 In this lab you will find the location of the delegate method of SBIconScrollView, a subclass of UIScrollView which is used to display on the SpringBoard icons. 
 
@@ -87,7 +96,7 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
   (lldb) process load 
   ```
 
-10. Provided that you've already compiled the SpringBoardPOC app. Open the products directory, right click on `SpringBoardTweak.framework` and select `Show in Finder`. Expand the SpringBoardTweak.framework and drag and drop the `SpringBoardTweak` executable into the LLDB console. Now press enter. Resume the program
+  Provided that you've already compiled the SpringBoardPOC app. Open the products directory, right click on `SpringBoardTweak.framework` and select `Show in Finder`. Expand the SpringBoardTweak.framework and drag and drop the `SpringBoardTweak` executable into the LLDB console. Now press enter. Resume the program
  
   ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Load_DYLD.gif)
 
@@ -96,12 +105,42 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
 
 If this stuff interests you there are several paths you can take. 
 
+If you want to learn more, I would suggest following along on this tutorial. Although it's a bit dated, you'll learn some good debugging tricks in this series. 
+
+https://www.raywenderlich.com/94020/creating-an-xcode-plugin-part-1
+
+https://www.raywenderlich.com/97756/creating-an-xcode-plugin-part-2
+
+https://www.raywenderlich.com/104479/creating-an-xcode-plugin-part-3
+
+An EXCELLENT book on the process of creating jailbreak tweaks check out:  
+
+https://github.com/iosre/iOSAppReverseEngineering
+
 One path is to try figuring out how some features in an application work. If that interests you, here are some challenges: 
+
+* Replace the camera image template from the slideup menu with a different image and different action. For example: open Safari instead. 
+  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/SpringBoardSlide.png) 
+  I'll give you a starting point to work off of: 
+
+  ```lldb
+  lldb -n SpringBoard
+  (lldb) rb UIControl.send 
+  (lldb) c 
+  ```
+  Tap on button. LLDB will stop on `-[UIControl sendAction:to:forEvent:]`. Explore registers. Remember to work ona 64 bit device. (IMHO, it's easier :] ) 
+  ```lldb 
+  (lldb) po (SEL)$rdx 
+  (lldb) po rcx 
+  ```
+  
+  This will dump the SEL and the recipient. See if you can go from there... 
+
 
 * The Photos application in the Simulator has a very cool effect when scrolling through the photos (only found in iOS 9 and later). When you scroll, part of the photo gets cut off, giving it a cool 3-Dimensional affect. Try and figure out how they accomplish this. 
 
   ```lldb
-  lldb -n MobileSlidehow
+  lldb -n MobileSlideShow
   ```
   
 * What API endpoints is the Maps application hitting? What params are they using? Try and get as much information out of it as possible. Are you able to hit these endpoints yourself with Terminal's `curl`? 
@@ -110,7 +149,7 @@ One path is to try figuring out how some features in an application work. If tha
   lldb -n Maps
   ```
 
-
+#### *Note: I have not tried any of these challenges, so I do not know the difficulty of completing them. I'll be open to solving them myself and giving hints if I see an honest attempt is being made* 
 
 #### Important! Added a dump_methods.py script. Will spend a bit of time talking about custom LLDB scripts for finding stuff.
 
