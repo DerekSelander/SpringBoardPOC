@@ -1,6 +1,6 @@
-## Lab Material for [Silicon Valley iOS Developers Meetup](http://www.meetup.com/sviphone/),<br/> [iOS Security and Hacking](http://www.meetup.com/sviphone/events/230950259/)
+# Lab Material for [Silicon Valley iOS Developers Meetup](http://www.meetup.com/sviphone/),<br/> [iOS Security and Hacking](http://www.meetup.com/sviphone/events/230950259/)
 
-### Slides
+## Slides
 
 * Tip #1: Explore Code without the Source Code
   * Use registers
@@ -99,13 +99,26 @@
  
  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/srl.png)
  
-### Setup 
+## Setup 
 
 If you don't already have [class-dump, please download it](https://github.com/nygard/class-dump) and install in `/usr/local/bin` or similar location. 
 
 Download this sample project and follow along below. 
 
-### Compiling the Code
+There's a LLDB script included called `dump_methods.py` used for well... dumping methods. You can install it by following these instructions: 
+
+1. Put `dump_methods.py` in a known location. i.e. `~/lldb/`
+2. Add the following to your `~/.lldbinit` file 
+  ```lldb
+  command script import PATH/TO/dump_methods.py
+  
+  # i.e. command script import ~/lldb/dump_methods.py
+  ```
+3. Celebrate!
+
+From here on out, every time LLDB is launched you can use this script for getting all the methods. i.e. `(lldb) dump_methods UIView`
+
+## Compiling the Code
 
 After downloading the sample code, build and run the app. It is an application which has a UIScrollView which showcases several views... not too exciting. Try scrolling back and forth in the simulator to make sure this works.
 
@@ -115,11 +128,9 @@ An important note is that SpringBoardPOC has one required framework, `SpringBoar
 
 You'll see a commented out method for `+ (void)load`. Uncomment this method then recompile the app. Try moving the UIScrollView around and see what happens. 
 
+## Finding Where to Swizzle
 
-
-### Finding Where to Swizzle
-
-In this lab you will find the location of the delegate method of SBIconScrollView, a subclass of UIScrollView which is used to display on the SpringBoard icons. 
+In this lab you will find the location of the delegate method of SBIconScrollView, a subclass of UIScrollView which is used to display the SpringBoard icons. 
 
 Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScroll:` containing app icons in SpringBoard... without modding your `~/.lldbinit` file
 
@@ -248,17 +259,6 @@ One path is to try figuring out how some features in an application work. If tha
 
 #### *Note: I have not tried any of these challenges, so I do not know the difficulty of completing them. I'll be open to solving them myself and giving hints if I see an honest attempt is being made* 
 
-#### Important! Added a dump_methods.py script. Will spend a bit of time talking about custom LLDB scripts for finding stuff.
-
-1. Grab latest. 
-2. Put `dump_methods.py` in a known location. i.e. `~/lldb/`
-3. Add the following to your `~/.lldbinit` file 
-  ```lldb
-  command script import PATH/TO/dump_methods.py
-  
-  # i.e. command script import ~/lldb/dump_methods.py
-  ```
-4. Celebrate! 
 
 ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Load_DYLD.gif)
 
