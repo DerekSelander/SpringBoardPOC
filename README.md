@@ -116,7 +116,7 @@ There's a LLDB script included called `dump_methods.py` used for well... dumping
   ```
 3. Celebrate!
 
-From here on out, every time LLDB is launched you can use this script for getting all the methods. i.e. `(lldb) dump_methods UIView`
+From here on out, every time LLDB is launched you can use this script for getting all the methods. i.e. `(lldb) dump_methods UIView`. Note that if you are working with swift a class's name is going to be MODULE.CLASSNAME, unless the swift class has that `@objc` before it... 
 
 ## Compiling the Code
 
@@ -201,6 +201,8 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
 
   As you can see, `SBFolderView` (and by inheritance, all of it's subclasses) implement `scrollViewDidScroll:`
 
+ **Important!:** class-dump works because SpringBoard is NOT encrypted. If you were to try this on, say, the OS X Slack app, class-dump will fail because the binary is encrypted.
+
 9. Head back to the LLDB console. Type the following, but *DO NOT PRESS ENTER YET*
   ```lldb
   (lldb) process load 
@@ -251,6 +253,8 @@ One path is to try figuring out how some features in an application work. If tha
   lldb -n MobileSlideShow
   ```
   
+  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/MobileSlideshow.gif)
+  
 * What API endpoints is the Maps application hitting? What params are they using? Try and get as much information out of it as possible. Are you able to hit these endpoints yourself with Terminal's `curl`? 
 
   ```lldb
@@ -259,7 +263,5 @@ One path is to try figuring out how some features in an application work. If tha
 
 #### *Note: I have not tried any of these challenges, so I do not know the difficulty of completing them. I'll be open to solving them myself and giving hints if I see an honest attempt is being made* 
 
-
-![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Load_DYLD.gif)
 
 
