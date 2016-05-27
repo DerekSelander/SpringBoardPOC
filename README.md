@@ -40,7 +40,7 @@
    "_restartTimeItemTimer"
    ```
   
-  As you can see, `___lldb_unnamed_function25892$$SpringBoard` is LLDBs representation of `-[SBStatusBarStateAggregator_restartTimeItemTimer]` because the binary is stripped (no DEBUG info included)
+  As you can see, `___lldb_unnamed_function25892$$SpringBoard` is LLDBs representation of `-[SBStatusBarStateAggregator _restartTimeItemTimer]` because the binary is stripped (no DEBUG info included)
   
 * Tip #2: Find Instances of Classes
   * Use LLDB's heap script that comes included with every version of Xcode. In LLDB... 
