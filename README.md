@@ -65,11 +65,29 @@
    Now, tap on the Do Not Distrub Button. Breakpoint hit :] 
    
 * Tip #4: Complex Assembly
+ * Sometimes the assembly is to hard to read by itself. You will need to execute the code while stepping in the assembly to figure out what is happening 
  * Create a breakpoint then call the function in which you want to examine. Dump registers while stepping through asm.
-   For example, in SpringBoard
+   For example, in iOS 9.3 Simulator 6s Plus, SpringBoard has the following method: `[[SBPasscodeController sharedInstance] forceUserToChangePasscode]` found at `___lldb_unnamed_function7503$$SpringBoard`
 
+ ```lldb
+ lldb -n SpringBoard
+ (lldb) b ___lldb_unnamed_function7503$$SpringBoard
+ (lldb) ex -i false -o -- [[SBPasscodeController sharedInstance] forceUserToChangePasscode]
+ (lldb) di 
+ (lldb) si 
+ ```
+
+ You can step through instructions and print values in assembly. 
   
-
+* Tip #5: Use LLDB Python API
+ * Use the LLDB Python API 
+ ```lldb
+ (lldb) script 
+ >>> target = lldb.debugger.GetSelectedTarget()
+ >>> path = target.executable.fullpath
+ >>> print path 
+ ```
+ 
 ### Setup 
 
 If you don't already have [class-dump, please download it](https://github.com/nygard/class-dump) and install in `/usr/local/bin` or similar location. 
