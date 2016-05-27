@@ -54,7 +54,7 @@
   * Break only when a particular case is true. Useful for hunting down a unique case for a frequently called method. 
     For example, say if you wanted to break when a specific UILabel's text is being set. In SpringBoard, when pressing the Do Not Distrub button, text appears saying "Do Not Distrub: On"
 
-   image 
+     ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/Do_not_disturb.png)
    
    In LLDB, you can break exactly when this is set. 
    ```lldb 
