@@ -53,7 +53,7 @@
   * Break only when a particular case is true. Useful for hunting down a unique case for a frequently called method. 
     For example, say if you wanted to break when a specific UILabel's text is being set. In SpringBoard, when pressing the Do Not Distrub button, text appears saying "Do Not Distrub: On"
 
-     ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/Do_not_disturb.png)
+     ![Do Not Disturb: On](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/Do_not_disturb.png)
    
    In LLDB, you can break exactly when this is set. 
    ```lldb 
@@ -89,7 +89,7 @@
  You can of course make scripts to do these tasks so you don't have to enter in these commands every time. 
  Here is an example of `dump_methods.py` used on a class in SpringBoard. 
  
- ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/dump_methods.png)
+ ![dump_methods](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/dump_methods.png)
  
  `dump_methods.py` is included in this repo. 
  
@@ -97,7 +97,7 @@
  
  Here's a different (private) command called `stripped regex lookup` that I have been working on that does a regex on the input and finds the physical address as well as the `___lldb_unnamed_function` equivalent for the query on a stripped binary. :]
  
- ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/srl.png)
+ ![stripped regex lookup](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/srl.png)
  
 ## Setup 
 
@@ -136,7 +136,7 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
 
 1. Attach LLDB to SpringBoard. Alternatively, use Xcode. From the top menu, select `Debug`, then `Attach to process`, then type in `SpringBoard`. 
 
-  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Attach.gif)
+  ![LLDB Attach](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Attach.gif)
 
   Or if you want to use Terminal... 
 
@@ -151,7 +151,7 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
   (lldb) objc_refs SBIconScrollView -o
   ```
 
-  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Find.gif)
+  ![Heap Find](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Find.gif)
 
 3. Look for SBIconScrollView and the corresponding reference address (cmd + f could help). Note that your address will be different  
 
@@ -173,7 +173,7 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
   (lldb) po [0xdeadbeef setHidden: NO]
   ```
 
-  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView.gif)
+  ![SBIconScrollView](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView.gif)
 
 6. UIScrollViews can have a `delegate` object conforming to `UIScrollViewDelegate`. Find out if this class exists and if it does, what class this is...
 
@@ -182,7 +182,7 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
   (lldb) po [[0xdeadbeef delegate] superclass]
   ```
 
-  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView_Delegate.gif)
+  ![SBIconScrollView Delegate](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_SBIconScrollView_Delegate.gif)
 
 7. It is this class (or subsequent parent class) that could implement UIScrollViewDelegate methods. Time to use `class-dump` on the executable itself. First you need to find where SpringBoard is located on your system. 
 
@@ -196,7 +196,7 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
   class-dump PATH/TO/SpringBoard -f scrollViewDidScroll
   ```
 
-  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/Terminal.gif)
+  ![Terminal](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/Terminal.gif)
   Using the class that you printed out from the UIScrollView delgate, search for a class (or superclass) that implements `scrollViewDidScroll:`
 
   As you can see, `SBFolderView` (and by inheritance, all of it's subclasses) implement `scrollViewDidScroll:`
@@ -210,7 +210,7 @@ Steps to find `UIScrollView`'s delegate class which implements `scrollViewDidScr
 
   Provided that you've already compiled the SpringBoardPOC app. Open the products directory, right click on `SpringBoardTweak.framework` and select `Show in Finder`. Expand the SpringBoardTweak.framework and drag and drop the `SpringBoardTweak` executable into the LLDB console. Now press enter. Resume the program
  
-  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Load_DYLD.gif)
+  ![Loading Framework into SpringBoard](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/LLDB_Load_DYLD.gif)
 
 
 ## Where to Go From Here
@@ -229,8 +229,10 @@ https://github.com/iosre/iOSAppReverseEngineering
 
 One path is to try figuring out how some features in an application work. If that interests you, here are some challenges: 
 
-* Replace the camera image template from the slideup menu with a different image and different action. For example: open Safari instead. 
-  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/SpringBoardSlide.png) 
+* Replace the camera image template from the slideup menu with a different image and different action. For example: open Safari instead.
+
+  ![What's that button do?](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/SpringBoardSlide.png) 
+  
   I'll give you a starting point to work off of: 
 
   ```lldb
@@ -253,7 +255,7 @@ One path is to try figuring out how some features in an application work. If tha
   lldb -n MobileSlideShow
   ```
   
-  ![Test Text](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/MobileSlideshow.gif)
+  ![Photos 3D Slide Effect](https://github.com/DerekSelander/SpringBoardPOC/raw/master/Media/MobileSlideshow.gif)
   
 * What API endpoints is the Maps application hitting? What params are they using? Try and get as much information out of it as possible. Are you able to hit these endpoints yourself with Terminal's `curl`? 
 
@@ -262,6 +264,8 @@ One path is to try figuring out how some features in an application work. If tha
   ```
 
 #### *Note: I have not tried any of these challenges, so I do not know the difficulty of completing them. I'll be open to solving them myself and giving hints if I see an honest attempt is being made* 
+
+Have fun! ping me on Twitter for questions ![LOLGrep](https://twitter.com/lolgrep)
 
 
 
